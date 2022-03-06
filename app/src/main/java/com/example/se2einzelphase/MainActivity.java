@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
 
     private EditText matrikelnummer;
     private EditText output;
+    public static String resultThreadNetwork;
+    private Button buttonCreate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,10 +21,24 @@ public class MainActivity extends AppCompatActivity {
 
         matrikelnummer = findViewById(R.id.matrikelnummerInput);
         output = findViewById(R.id.editTextAnswerServer);
+
+        buttonCreate = findViewById(R.id.buttonSend);
+        buttonCreate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                buttonCreate_Click(view);
+            }
+        });
     }
 
-    public void buttonSend_Click(View view)
+    public void buttonCreate_Click(View view)
     {
         String input = matrikelnummer.getText().toString();
+
+        NetworkConnection network = new NetworkConnection(input);
+        new Thread(network).start();
+        output.setText(resultThreadNetwork);
+
+
     }
 }

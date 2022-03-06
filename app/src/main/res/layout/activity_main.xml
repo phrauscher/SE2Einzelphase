@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
         android:layout_marginTop="30dp"
-        android:onClick="buttonSend_Click"
+        android:onClick="buttonCreate_Click"
         android:text="Abschicken"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/matrikelnummerInput" />
