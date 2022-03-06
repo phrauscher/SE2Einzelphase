@@ -28,11 +28,15 @@ public class NetworkConnection implements Runnable {
             outputStreamServer.writeBytes(input + '\n');
             resultServer = inputStreamFromServer.readLine();
 
-            MainActivity.resultThreadNetwork = resultServer;
-
+            MainActivity.resultThread = resultServer;
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getResult()
+    {
+        return resultServer;
     }
 }

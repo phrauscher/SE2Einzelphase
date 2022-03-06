@@ -7,11 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.concurrent.Callable;
+
 public class MainActivity extends AppCompatActivity  {
 
     private EditText matrikelnummer;
     private EditText output;
-    public static String resultThreadNetwork;
+    public static String resultThread;
     private Button buttonCreate;
 
     @Override
@@ -37,8 +39,6 @@ public class MainActivity extends AppCompatActivity  {
 
         NetworkConnection network = new NetworkConnection(input);
         new Thread(network).start();
-        output.setText(resultThreadNetwork);
-
-
+        output.setText(resultThread);
     }
 }
