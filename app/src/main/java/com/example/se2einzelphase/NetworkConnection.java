@@ -34,9 +34,4 @@ public class NetworkConnection implements Runnable {
             e.printStackTrace();
         }
     }
-
-    public String getResult()
-    {
-        return resultServer;
-    }
 }

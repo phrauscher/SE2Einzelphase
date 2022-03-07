@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             prim.add(5);
             prim.add(7);
 
-            for (int i = 0; i <= 7; i++) {
+            for (int i = 0; i < input.length(); i++) {
                 Integer number = Integer.parseInt(String.valueOf(input.charAt(i)));
 
                 if (!prim.contains(number)) {
@@ -90,7 +90,15 @@ public class MainActivity extends AppCompatActivity {
                 sortedList.add(smallest);
                 withOutPrim.remove(position);
             }
-            output.setText(sortedList.toString());
+
+            String outputSortedList = "";
+            int counter = 0;
+            while(counter < sortedList.size())
+            {
+                outputSortedList = outputSortedList + sortedList.get(counter).toString();
+                counter++;
+            }
+            output.setText(outputSortedList);
         }
     }
 }
