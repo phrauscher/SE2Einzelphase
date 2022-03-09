@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:onClick="buttonCreate_Click"
     tools:context=".MainActivity">
 
     <Button
@@ -30,8 +29,8 @@
 
     <EditText
         android:id="@+id/matrikelnummerInput"
-        android:layout_width="280dp"
-        android:layout_height="40dp"
+        android:layout_width="283dp"
+        android:layout_height="45dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="5dp"
         android:ems="10"
@@ -45,8 +44,8 @@
         android:id="@+id/buttonCalculate"
         android:layout_width="147dp"
         android:layout_height="49dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="56dp"
         android:onClick="buttonCalculate_Click"
         android:text="Berechnen"
         app:layout_constraintStart_toEndOf="@+id/buttonSend"
@@ -54,9 +53,12 @@
 
     <TextView
         android:id="@+id/textViewOutput"
-        android:layout_width="267dp"
-        android:layout_height="31dp"
+        android:layout_width="286dp"
+        android:layout_height="132dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
         android:text="Antwort vom Server"
-        tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="255dp" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSend" />
 </androidx.constraintlayout.widget.ConstraintLayout>

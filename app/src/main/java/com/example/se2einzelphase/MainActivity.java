@@ -7,13 +7,17 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText matrikelnummer;
     private TextView output;
-    public static String resultThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +32,16 @@ public class MainActivity extends AppCompatActivity {
         String input = matrikelnummer.getText().toString();
 
         NetworkConnection network = new NetworkConnection(input);
-        Thread thread = new Thread(network);
-        thread.start();
-        output.setText(resultThread);
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        Future<String> future = executorService.submit(network);
 
-        Log.d("Result output",output.getText().toString());
+        try {
+            output.setText(future.get());
+        } catch (ExecutionException e) {
+            Log.e("Execution Exception",e.getMessage());
+        } catch (InterruptedException e) {
+            Log.e("Interrupted Exception",e.getMessage());
+        }
     }
 
     public void buttonCalculate_Click(View view) {

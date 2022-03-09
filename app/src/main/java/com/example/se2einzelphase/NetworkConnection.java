@@ -5,8 +5,9 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.concurrent.Callable;
 
-public class NetworkConnection implements Runnable {
+public class NetworkConnection implements Callable<String> {
 
     private String input;
     private String resultServer;
@@ -17,8 +18,7 @@ public class NetworkConnection implements Runnable {
     }
 
     @Override
-    public void run() {
-
+    public String call() throws Exception {
         try {
             clientSocket = new Socket("se2-isys.aau.at", 53212);
 
@@ -28,10 +28,10 @@ public class NetworkConnection implements Runnable {
             outputStreamServer.writeBytes(input + '\n');
             resultServer = inputStreamFromServer.readLine();
 
-            MainActivity.resultThread = resultServer;
+            return resultServer;
 
         } catch (IOException e) {
-            e.printStackTrace();
+            throw e;
         }
     }
 }
