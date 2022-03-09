@@ -4,17 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import java.util.ArrayList;
+import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText matrikelnummer;
-    private EditText output;
+    private TextView output;
     public static String resultThread;
-    private Button buttonCreate;
-    private Button buttonCalculate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,31 +21,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         matrikelnummer = findViewById(R.id.matrikelnummerInput);
-        output = findViewById(R.id.editTextAnswerServer);
-
-        buttonCreate = findViewById(R.id.buttonSend);
-        buttonCreate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                buttonCreate_Click(view);
-            }
-        });
-
-        buttonCalculate = findViewById(R.id.buttonCalculate);
-        buttonCalculate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                buttonCalculate_Click(view);
-            }
-        });
+        output = findViewById(R.id.textViewOutput);
     }
 
-    public void buttonCreate_Click(View view) {
+    public void buttonSend_Click(View view) {
         String input = matrikelnummer.getText().toString();
 
         NetworkConnection network = new NetworkConnection(input);
-        new Thread(network).start();
+        Thread thread = new Thread(network);
+        thread.start();
         output.setText(resultThread);
+
+        Log.d("Result output",output.getText().toString());
     }
 
     public void buttonCalculate_Click(View view) {
