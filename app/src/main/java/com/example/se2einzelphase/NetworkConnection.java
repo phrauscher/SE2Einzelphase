@@ -22,16 +22,16 @@ public class NetworkConnection implements Callable<String> {
         try {
             clientSocket = new Socket("se2-isys.aau.at", 53212);
 
-            DataOutputStream outputStreamServer = new DataOutputStream(clientSocket.getOutputStream());
+            DataOutputStream outputStreamToServer = new DataOutputStream(clientSocket.getOutputStream());
             BufferedReader inputStreamFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-            outputStreamServer.writeBytes(input + '\n');
+            outputStreamToServer.writeBytes(input + '\n');
             resultServer = inputStreamFromServer.readLine();
 
             return resultServer;
 
         } catch (IOException e) {
-            throw e;
+            return e.getMessage();
         }
     }
 }

@@ -33,10 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
         NetworkConnection network = new NetworkConnection(input);
         ExecutorService executorService = Executors.newSingleThreadExecutor();
-        Future<String> future = executorService.submit(network);
+        Future<String> result = executorService.submit(network);
 
         try {
-            output.setText(future.get());
+            output.setText(result.get());
         } catch (ExecutionException e) {
             Log.e("Execution Exception",e.getMessage());
         } catch (InterruptedException e) {
@@ -52,13 +52,14 @@ public class MainActivity extends AppCompatActivity {
         if (input.isEmpty()) {
             output.setText("Bitte eine Matrikelnummer eingeben!");
         } else {
-            ArrayList<Integer> withOutPrim = new ArrayList<>();
 
             ArrayList<Integer> prim = new ArrayList<>();
             prim.add(2);
             prim.add(3);
             prim.add(5);
             prim.add(7);
+
+            ArrayList<Integer> withOutPrim = new ArrayList<>();
 
             for (int i = 0; i < input.length(); i++) {
                 Integer number = Integer.parseInt(String.valueOf(input.charAt(i)));
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
             int counter = 0;
             while(counter < sortedList.size())
             {
-                outputSortedList = outputSortedList + sortedList.get(counter).toString();
+                outputSortedList += sortedList.get(counter).toString();
                 counter++;
             }
             output.setText(outputSortedList);
