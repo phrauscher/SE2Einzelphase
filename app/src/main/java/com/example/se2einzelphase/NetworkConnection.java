@@ -18,7 +18,7 @@ public class NetworkConnection implements Callable<String> {
     }
 
     @Override
-    public String call() throws Exception {
+    public String call() {
         try {
             clientSocket = new Socket("se2-isys.aau.at", 53212);
 

@@ -21,7 +21,7 @@ public class NetworkConnectionTest {
     }
 
     @Test
-    public void callCallWithWrongMatrikelnummer() throws ExecutionException, InterruptedException {
+    public void callWithWrongMatrikelnummer() throws ExecutionException, InterruptedException {
         networkConnection = new NetworkConnection("003499");
 
         ExecutorService executorService = Executors.newSingleThreadExecutor();
